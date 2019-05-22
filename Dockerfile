@@ -16,7 +16,8 @@ RUN apk update \
 
 ADD conf/nginx-site.conf /etc/nginx/sites-available/default.conf
 ADD conf/nginx-site-ssl.conf /etc/nginx/sites-available/default-ssl.conf
-RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+RUN rm /etc/nginx/sites-enabled/default.conf -rf \
+	&& ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 WORKDIR /var/www/html
 
