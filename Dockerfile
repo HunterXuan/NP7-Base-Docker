@@ -19,7 +19,7 @@ ADD conf/nginx-site-ssl.conf /etc/nginx/sites-available/default-ssl.conf
 RUN rm /etc/nginx/sites-enabled/default.conf -rf \
 	&& ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf \
 	# tweak php-fpm config
-	echo "memory_limit = 256M"  >> ${php_vars} \
+	&& echo "memory_limit = 256M"  >> ${php_vars} \
 	&& sed -i \
 		-e "s/pm.max_children = 4/pm.max_children = 16/g" \
 		-e "s/pm.start_servers = 3/pm.start_servers = 4/g" \
